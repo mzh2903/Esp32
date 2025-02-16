@@ -14,9 +14,9 @@
         const ngrokURL = "https://active-cool-sloth.ngrok-free.app"; // Ganti dengan URL dari Ngrok
 
         function controlLED(command) {
-            fetch(`${ngrokURL}/control?cmd=${command}`, {
+             fetch(`${ngrokURL}/control?cmd=${command}`, {
                 method: 'GET',
-                mode: 'cors'
+                mode: 'no-cors' // Mode ini mencegah error CORS
             })
             .then(response => console.log('Command sent:', command))
             .catch(error => console.error('Error:', error));
