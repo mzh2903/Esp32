@@ -4,18 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESP32 Web Control</title>
-    <script>
-        function sendCommand(command) {
-            fetch(`http://192.168.100.217/control?cmd=${command}`)
-                .then(response => response.text())
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
-        }
-    </script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { font-size: 20px; padding: 10px 20px; margin: 10px; cursor: pointer; }
+        #status { font-size: 18px; margin-top: 20px; }
+    </style>
 </head>
 <body>
-    <h1>ESP32 Web Control</h1>
+    <h2>ESP32 LED Control</h2>
     <button onclick="sendCommand('ON')">Turn ON</button>
     <button onclick="sendCommand('OFF')">Turn OFF</button>
+    <p id="status">Status: Unknown</p>
+
+    <script>
+        const ESP32_IP = "http://192.168.100.217"; // Ganti dengan IP ESP32
+
+        function sendCommand(command) {
+            fetch(`${ESP32_IP}/control?cmd=${command}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("status").innerText = `Status: ${data}`;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("status").innerText = "ESP32 tidak dapat dihubungi!";
+                });
+        }
+    </script>
 </body>
 </html>
