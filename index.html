@@ -17,7 +17,7 @@
     <p id="status">Status: Unknown</p>
 
     <script>
-        const ESP32_IP = "http://192.168.100.217"; // Ganti dengan IP ESP32
+        const ESP32_IP = "http://192.168.100.217/"; // Ganti dengan IP ESP32
 
         function sendCommand(command) {
             fetch(`${ESP32_IP}/control?cmd=${command}`)
