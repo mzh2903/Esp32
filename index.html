@@ -11,13 +11,13 @@
     <button onclick="controlLED('OFF')">Matikan LED</button>
 
     <script>
-        // Ganti dengan URL dari Ngrok (HARUS HTTPS)
+        // Ganti dengan URL Ngrok (HARUS HTTPS)
         const ngrokURL = "https://active-cool-sloth.ngrok-free.app"; 
 
         function controlLED(command) {
             fetch(`${ngrokURL}/control?cmd=${command}`, {
                 method: 'GET',
-                mode: 'cors' // HARUS 'cors' setelah ESP32 support OPTIONS
+                mode: 'cors'
             })
             .then(response => response.text())
             .then(data => console.log('Response:', data))
