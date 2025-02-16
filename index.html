@@ -11,7 +11,7 @@
     <button onclick="controlLED('OFF')">Matikan LED</button>
 
     <script>
-        const ngrokURL = " https://b467-2001-448a-2077-2e69-bdd6-56b4-6b4d-f293.ngrok-free.app"; // Ganti dengan URL dari Ngrok
+        const ngrokURL = "https://a531-2001-448a-2077-2e69-bdd6-56b4-6b4d-f293.ngrok-free.app"; // Ganti dengan URL dari Ngrok
 
         function controlLED(command) {
             fetch(`${ngrokURL}/control?cmd=${command}`, {
