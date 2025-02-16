@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 Control</title>
+    <title>ESP32 Web Control</title>
 </head>
 <body>
     <h1>ESP32 Web Control</h1>
@@ -11,10 +11,12 @@
     <button onclick="controlLED('OFF')">Matikan LED</button>
 
     <script>
+        const ngrokURL = " https://b467-2001-448a-2077-2e69-bdd6-56b4-6b4d-f293.ngrok-free.app"; // Ganti dengan URL dari Ngrok
+
         function controlLED(command) {
-            fetch('http://192.168.100.217/control?cmd=' + command, {
+            fetch(`${ngrokURL}/control?cmd=${command}`, {
                 method: 'GET',
-                mode: 'no-cors' // Cegah error CORS
+                mode: 'cors'
             })
             .then(response => console.log('Command sent:', command))
             .catch(error => console.error('Error:', error));
