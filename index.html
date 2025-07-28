@@ -13,7 +13,7 @@
     <div id='chat'></div>
     <input id="massage"><button onclick="send()">kirim</button>
     <script>
-        const ws = new WebSocket("wss://s14904.nyc1.piesocket.com/v3/1?api_key=Jj86wbzwtc0zUNQs4LA5WD0XPcPKwGt3DJewHRXX&notify_self=1");
+        const ws = new WebSocket("wss://s14904.nyc1.piesocket.com/v3/1?api_key=Jj86wbzwtc0zUNQs4LA5WD0XPcPKwGt3DJewHRXX&noti");
 
         ws.onopen = () => log("Connected to server");
         ws.onmessage = (event) => {
