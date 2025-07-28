@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSS TOLI</title>
+    <style>
+        #chat { border:1px solid #ccc; min-height:100px; padding:10px; margin-bottom:10px;}
+    </style>
+</head>
+<body>
+    <h1>Chatroom WA</h1>
+    <div id='chat'></div>
+    <input id="massage"><button onclick="send()">kirim</button>
+    <script>
+        const ws = new WebSocket("wss://s14904.nyc1.piesocket.com/v3/1?api_key=Jj86wbzwtc0zUNQs4LA5WD0XPcPKwGt3DJewHRXX&notify_self=1");
+
+        ws.onopen = () => log("Connected to server");
+        ws.onmessage = (event) => {
+            try {
+                // Jika pesan dalam format JSON
+                const msg = JSON.parse(event.data);
+                if(msg.e === 'r') {
+                    log("User: " + msg.msg);
+                }
+            } catch {
+                // Jika pesan berupa string biasa
+                log("User: " + event.data);
+            }
+        };
+
+        function send(){
+            // Kirim dalam format sederhana (atau pakai JSON jika ingin)
+            const val = document.getElementById('massage').value;
+            // Kirim pesan plain text, bisa juga JSON sesuai kebutuhan
+            ws.send(val);
+            document.getElementById('massage').value = '';
+        }
+
+        function log(msg) {
+            const chat = document.getElementById('chat');
+            chat.innerHTML += "<p>"+msg+"</p>";
+        }
+    </script>
+</body>
+</html>
