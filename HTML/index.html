@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSS TOLI</title>
+</head>
+<body>
+    <h1>Chatroom WA</h1>
+    <div id='chat'></div>
+    <input id="massage"><button onclick="send()">kirim</button>
+</body>
+<script>
+    const skt = new WebSocket ('/ws');
+    function send(){
+        skt.send(JSON.stringify({e:'s', msg : document.getElementById('massage').value}));
+        document.getElementById('massage').value=''
+    }
+      skt.onmessage=(event)=>{
+        const msg = JSON.parse(event.data);
+                console.log('received')
+
+        if(msg.e==='r'){
+        const chat=document.getElementById('chat')
+        chat.innerHTML+="<p>"+msg.msg+"</p><br>";
+        }
+    }
+</script>
+</html>
