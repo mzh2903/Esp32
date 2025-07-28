@@ -14,7 +14,8 @@
     <input id="massage"><button onclick="send()">kirim</button>
 </body>
 <script>
-    const skt = new WebSocket ('/ws');
+    const ws = new WebSocket("wss://s14904.nyc1.piesocket.com/v3/1?api_key=Jj86wbzwtc0zUNQs4LA5WD0XPcPKwGt3DJewHRXX&notify_self=1:8080");
+    ws.onopen = () => log("Connected to server");
     function send(){
         skt.send(JSON.stringify({e:'s', msg : document.getElementById('massage').value}));
         document.getElementById('massage').value=''
