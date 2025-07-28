@@ -20,7 +20,7 @@ app.ws('/ws', (ws, req) => {
 });
 
 app.get('/', (req,res)=>{
-    res.sendFile(path.join(__dirname, '..','HTML', 'index.html'));
+    res.sendFile(path.join(__dirname,'..', 'index.html'));
 });
 
 app.listen('4000','0.0.0.0')
